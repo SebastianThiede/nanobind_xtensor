@@ -1,5 +1,5 @@
-#ifndef LDHFPC_BINDINGS_XTENSOR_CASTER
-#define LDHFPC_BINDINGS_XTENSOR_CASTER
+#ifndef NANOBIND_XTENSOR_CASTER
+#define NANOBIND_XTENSOR_CASTER
 
 #include "xtensor.hpp"
 #include <nanobind/nanobind.h>
