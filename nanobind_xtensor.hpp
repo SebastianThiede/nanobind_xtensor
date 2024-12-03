@@ -62,13 +62,13 @@ struct nb_shape_param<xt::xtensor_container<EC, N, L, Tag>> {
 };
 
 template<typename T>
-using nb_shape_param_v = nb_shape_param<T>::value;
+using nb_shape_param_v = typename nb_shape_param<T>::value;
 
 
 
 // Get scalar typeof an xexpression
 template<typename T>
-using xexpression_scalar_t = std::decay_t<T>::value_type;
+using xexpression_scalar_t = typename std::decay_t<T>::value_type;
 
 // Get the nanobind array type for an xtensor
 template<typename T, typename... additional>
@@ -89,7 +89,7 @@ struct NDArray_for_xtensor {
 };
 
 template<typename T, typename... additional>
-using NDArray_for_xtensor_t = NDArray_for_xtensor<T, additional...>::type;
+using NDArray_for_xtensor_t = typename NDArray_for_xtensor<T, additional...>::type;
 
 // const version
 template<typename T, typename... additional>
@@ -109,7 +109,7 @@ struct constNDArray_for_xtensor {
     >;
 };
 template<typename T, typename... additional>
-using constNDArray_for_xtensor_t = constNDArray_for_xtensor<T, additional...>::type;
+using constNDArray_for_xtensor_t = typename constNDArray_for_xtensor<T, additional...>::type;
 
 // Bind xtensor ----------------------------------------------------------------
 template<typename T>
