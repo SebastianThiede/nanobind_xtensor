@@ -1,9 +1,9 @@
 #ifndef NANOBIND_XTENSOR_CASTER
 #define NANOBIND_XTENSOR_CASTER
 
-#include "xtensor.hpp"
-#include <nanobind/nanobind.h>
-#include <nanobind/ndarray.h>
+#include "xtensor/xtensor.hpp"
+#include "nanobind/nanobind.h"
+#include "nanobind/ndarray.h"
 #include <type_traits>
 
 NAMESPACE_BEGIN(NB_NAMESPACE)
@@ -48,7 +48,7 @@ constexpr bool is_xarray_v = is_xarray<T>::value;
 
 template<typename T>
 struct nb_shape_param {
-    using value = void;
+    using value = nb::detail::unused;
 };
 
 template<class ET, xt::layout_type L, bool SH, class Tag, std::size_t... Sizes>
@@ -66,7 +66,7 @@ using nb_shape_param_v = typename nb_shape_param<T>::value;
 
 
 
-// Get scalar typeof an xexpression
+// Get scalar type of an xexpression
 template<typename T>
 using xexpression_scalar_t = typename std::decay_t<T>::value_type;
 
@@ -144,7 +144,7 @@ struct type_caster<T, enable_if_t<
 
         value = self_t();
 
-        if (!is_xtensor_fixed_v<self_t>)
+        if constexpr (!is_xtensor_fixed_v<self_t>)
         {
             self_shape_t shape;
             for (std::size_t i = 0; i < NDArray.ndim(); i++)
