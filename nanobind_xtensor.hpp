@@ -146,7 +146,7 @@ struct type_caster<T, enable_if_t<
 
         if constexpr (!is_xtensor_fixed_v<self_t>)
         {
-            self_shape_t shape(NDArray.ndim());
+            self_shape_t shape{NDArray.ndim()};
             for (std::size_t i = 0; i < NDArray.ndim(); i++)
             {
                 shape[i] = NDArray.shape(i);
